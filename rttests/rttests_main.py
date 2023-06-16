@@ -41,14 +41,16 @@ def rttests(taskset_path=None, test_type=None, sched_policy=None):
 def response_time_test(df: pd.DataFrame, sched_policy=None):
     R = 0 # worst case response time
     if sched_policy == "rm":
-        df = df.sort_values(by=["T"])
+        df = df.sort_values(by=["T"], ignore_index=True)
     elif sched_policy == "dm":
-        df = df.sort_values(by=["D"])
+        df = df.sort_values(by=["D"], ignore_index=True)
     else:
         raise ValueError("Invalid sched_policy")
     n = len(df.index) # number of tasks
     R = df["C"][n-1]
     iter = 0
+
+    # import pdb; pdb.set_trace()
     if sched_policy == "rm":
         while True:
             R_new = df["C"][n-1]

@@ -15,32 +15,23 @@ def parse_args(args):
 
     parser = argparse.ArgumentParser(prog='rtsched',
         description="""Real-time Scheduler Tools for plotting and analysis""")
-    # parser.add_argument(
-    #     "config_path", help="configurations for the pytorch2r10cnn to be generated")
-    # parser.add_argument(
-    #     "pytorch_path", help="Path of the r10cnn model to be generated")
-    # parser.add_argument(
-    #     "r10cnn_name", help="Name of the r10cnn model to be generated")
-    # parser.add_argument("-i", "--input", action="store_true",
-    #                     help="""Decide whether to generate input data for the model. Default is False""")
-    # parser.add_argument("-t", "--num_tests", type=int,
-    #                     help="""Number of tests to generate. Default is 10""", metavar='')
+    parser.add_argument(
+        "taskset_path", help="taskset csv file path to be tested")
+    parser.add_argument(
+        "line_mode", choices={"single", "multi"}, 
+        help="line mode for plotting")
+    parser.add_argument(
+        "sched_policy", 
+        choices={"rm", "dm", "edf"},
+        help="Shceudling Policy with the test")
 
     return parser.parse_args(args)
 
 def main(args=sys.argv[1:]):
 
     args = parse_args(args)
-    # if args.input:
-    #     include_input = True
-    # else:
-    #     include_input = False
-    # if args.num_tests:
-    #     num_tests = args.num_tests
-    # else:
-    #     num_tests = 10
 
-    rtsched()
+    rtsched(args.taskset_path, args.line_mode, args.sched_policy)
 
 
 if __name__ == '__main__':

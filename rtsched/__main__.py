@@ -14,7 +14,7 @@ def parse_args(args):
     """
 
     parser = argparse.ArgumentParser(prog='rtsched',
-        description="""Real-time Tests""")
+        description="""Real-time Scheduler Tools for plotting and analysis""")
     # parser.add_argument(
     #     "config_path", help="configurations for the pytorch2r10cnn to be generated")
     # parser.add_argument(
